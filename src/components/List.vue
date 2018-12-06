@@ -1,5 +1,8 @@
 <template>
-  <ul id="todolist">
+  <transition-group
+    name="list"
+    tag="ul"
+  >
     <li
       v-for="item in todolist"
       :key="item._id"
@@ -13,7 +16,7 @@
         @click.stop="deleteTodo(item._id)"
       >X</span>
     </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -105,5 +108,14 @@ ul li.checked::before {
 .close:hover {
   background-color: #f44336;
   color: white;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
 }
 </style>
